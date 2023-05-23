@@ -143,22 +143,6 @@ async def start_command(message: types.Message, state: FSMContext):
         await bot.send_message(message.from_user.id,
                                text="Админ добавлен.")
 
-    @dp.message_handler(commands=['unlog_' + str(root_password)])
-    async def unlog_command(message: types.Message):
-        await message.delete()
-        try:
-            admin_id = BotDB.select_admin_self_id(message.from_user.id, message.from_user.first_name)[0]
-            """эта функция разлогинивает корневого админа из обычного"""
-
-            BotDB.update_false_admin(admin_id, '3', admin_id)
-
-            await bot.send_message(message.from_user.id,
-                                   text="Вы вышли.")
-            BotDB.delete_all(message.from_user.id)
-        except TypeError:
-            await bot.send_message(message.from_user.id,
-                                   text="Вы не заходили")
-
     @dp.message_handler(commands=['all_admins_' + str(root_password)])
     async def all_admins_command(message: types.Message):
         await message.delete()
