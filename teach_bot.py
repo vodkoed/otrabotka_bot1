@@ -49,7 +49,6 @@ commands = "Откройте меню чтобы посмотреть какие
 
 class StatesGroup(StatesGroup):
     """класс состояний мышины состояний"""
-    password = State()
     time = State()
 
 
@@ -69,10 +68,6 @@ async def start_command(message: types.Message, state: FSMContext):
             print(2)
             password_id = 2
             BotDB.add_admin(password_id, message.from_user.id, 1)
-
-    """извелекает пароль"""
-
-    """проверяет пароль с введёнными"""
 
     BotDB.add_admin_nickname(message.from_user.first_name, message.from_user.id)
     await bot.send_message(chat_id=message.from_user.id,
