@@ -23,3 +23,6 @@ day_ikb.add(InlineKeyboardButton('Понедельник', callback_data="day1")
             InlineKeyboardButton('Среда', callback_data="day3"), InlineKeyboardButton('Четверг', callback_data="day4"),
             InlineKeyboardButton('Пятница', callback_data="day5"), InlineKeyboardButton('Суббота', callback_data="day6"),
             InlineKeyboardButton('Воскресенье', callback_data="day7"))
+
+time_kb_for_update = ReplyKeyboardMarkup(resize_keyboard=True)
+time_kb_for_update.add(KeyboardButton('time1'), KeyboardButton('time2'))
