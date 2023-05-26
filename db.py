@@ -234,6 +234,11 @@ class BotDB:
         self.cursor.execute("SELECT user_id FROM admin WHERE nickname != %s", (nickname,))
         return self.cursor.fetchall()
 
+    def select_all_users(self):
+        """достаём из бд айди всех админов"""
+        self.cursor.execute("SELECT user_id FROM admin", ())
+        return self.cursor.fetchall()
+
     def select_count_of_admins(self, nickname):
         """достаём из бд количество админов"""
         self.cursor.execute("SELECT COUNT(id) FROM admin WHERE nickname != %s", (nickname,))

@@ -286,7 +286,16 @@ async def start_command(message: types.Message, state: FSMContext):
             except ChatNotFound:
                 k = 0
             j += 1
+        j = 0
+        all_users = BotDB.select_all_users()
         """эта функция удаляет админа и все его дни"""
+        while len(all_users) > j:
+            try:
+                await bot.send_message(all_users[j][0],
+                                       text="Извиняемся за неудобства.")
+            except ChatNotFound:
+                k = 0
+            j += 1
         BotDB.delete_unfinished_day('2')
         await bot.send_message(message.from_user.id,
                                text="Уведомления отправлены")
